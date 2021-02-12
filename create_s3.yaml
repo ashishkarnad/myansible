@@ -1,0 +1,11 @@
+---
+- name: s3 test
+  hosts: local
+  connection: local
+
+  tasks:
+    - name: Creating a new bucket
+      aws_s3:
+        bucket: bogotobogotestak04feb2021
+        mode: create
+        region: us-east-1 

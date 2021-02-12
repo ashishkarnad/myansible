@@ -1,0 +1,27 @@
+---
+  - hosts: localhost
+    connection: local
+    name: Create a new Demo EC2 instance
+    gather_facts: False
+    vars:
+      region: us-east-1
+      instance_type: t2.nano
+      ami: ami-0ff205aa565535f3d
+      keypair: ashishlindev
+      subnetid: subnet-c8802297
+    tasks: 
+    - name: create an ec2 instance
+      ec2: 
+        key_name: "{{ keypair }}" 
+        group: ssh
+        instance_type: "{{ instance_type }}"
+        image: "{{ ami }}"
+        region: "{{ region }}"
+        count: 1
+        count_tag: 
+          Name: Demo
+        instance_tags: 
+          Name: Demo
+        vpc_subnet_id: "{{ subnetid }}"
+        assign_public_ip: yes
+      register: ec2
