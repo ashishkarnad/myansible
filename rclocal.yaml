@@ -1,0 +1,27 @@
+--- 
+- name: Exec date cmd
+  hosts: pilots
+  tasks:
+    - name: create rc local
+      become: yes
+      #command: ls > ls.txt
+      copy: 
+        src: /home/cicd/rc.local
+        dest: /etc/rc.local
+        mode: 0755
+      #with_items:
+      #- rc.local  
+    - name: create rc local service
+      become: yes
+      copy:
+        src: /home/cicd/rc-local.service
+        dest: /etc/systemd/system/rc-local.service
+        mode: 0777
+    - name: create auto-start.sh under tsworkspace
+      become: yes
+      copy: 
+        src: /home/cicd/auto-start.sh
+        dest: /home/ubuntu/ts-workspace/auto-start.sh
+        mode: 0755
+        owner: ubuntu
+

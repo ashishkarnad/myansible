@@ -1,0 +1,15 @@
+- 
+   name: Exec date cmd
+   hosts: bastionprod
+   become_user: root
+   become: yes
+
+   tasks:
+     - 
+       name: exec date cmd
+       copy:
+         src: /var/lib/jenkins/.ts/
+         dest: /home/ubuntu/
+       #  rsync_opts:
+       #    ---include=*/
+         become: true

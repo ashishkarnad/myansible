@@ -1,0 +1,12 @@
+--- 
+- name: Exec date cmd
+  hosts: all
+  tasks:
+    - name: create auto-start.sh under tsworkspace
+      become: yes
+      copy: 
+        src: /home/cicd/auto-start.sh
+        dest: /home/ubuntu/ts-workspace/auto-start.sh
+        mode: 0755
+        owner: ubuntu
+

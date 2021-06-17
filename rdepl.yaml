@@ -1,0 +1,12 @@
+- 
+  name: Exec date cmd
+  hosts: pilots
+  tasks:
+    -
+      name: exec date cmd
+      #command: ls > ls.txt
+      copy: 
+        src=/home/cicd/{{ item }} dest=/home/ubuntu/
+      with_items:
+      - fullchain.pem
+      - privkey.pem  
